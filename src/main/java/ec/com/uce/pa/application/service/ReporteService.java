@@ -47,22 +47,36 @@ public class ReporteService {
 
     @Auditar
     public Reporte actualizar(Integer id, Reporte reporteModificado) {
+
         Reporte entity = this.rr.findById(id);
+
         if (entity == null) {
             throw new IllegalArgumentException("El reporte con ID " + id + " no existe.");
         }
-        
-        entity.setNombre(reporteModificado.getNombre());
-        entity.setDescripcion(reporteModificado.getDescripcion());
-        entity.setTipo(reporteModificado.getTipo());
-        entity.setFechaGeneracion(reporteModificado.getFechaGeneracion());
-        entity.setEstado(reporteModificado.getEstado());
-        
+
+        if (reporteModificado.getNombre() != null) {
+            entity.setNombre(reporteModificado.getNombre());
+        }
+
+        if (reporteModificado.getDescripcion() != null) {
+            entity.setDescripcion(reporteModificado.getDescripcion());
+        }
+
+        if (reporteModificado.getTipo() != null) {
+            entity.setTipo(reporteModificado.getTipo());
+        }
+
+        if (reporteModificado.getFechaGeneracion() != null) {
+            entity.setFechaGeneracion(reporteModificado.getFechaGeneracion());
+        }
+
+        if (reporteModificado.getEstado() != null) {
+            entity.setEstado(reporteModificado.getEstado());
+        }
+
         return entity;
     }
 
-
-    
     @Auditar
     public boolean eliminar(Integer id) {
         return this.rr.deleteById(id);
