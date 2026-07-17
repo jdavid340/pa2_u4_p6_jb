@@ -7,8 +7,10 @@ import ec.com.uce.pa.domain.model.Carro;
 import ec.com.uce.pa.infrastructure.CarroRepositoryImpl;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 @ApplicationScoped
+@Transactional
 public class CarroService {
 
     @Inject
@@ -29,9 +31,9 @@ public class CarroService {
         carros.parallelStream().forEach(this::crearCarro);
     }
 
-    public List<Carro> listarCarros() {
-        return this.cr.listAll();
-    }
+        public List<Carro> listarCarros() {
+            return this.cr.listAll();
+        }
 
     public Carro buscarPorId(Integer id) {
         return this.cr.findById(id);
@@ -39,17 +41,32 @@ public class CarroService {
 
     @Auditar
     public Carro actualizarCarro(Integer id, Carro carroModificado) {
+
         Carro entity = this.cr.findById(id);
 
         if (entity == null) {
             throw new IllegalArgumentException("El carro con ID " + id + " no existe.");
         }
 
-        entity.setMarca(carroModificado.getMarca());
-        entity.setModelo(carroModificado.getModelo());
-        entity.setPlaca(carroModificado.getPlaca());
-        entity.setAnio(carroModificado.getAnio());
-        entity.setFechaRegistro(carroModificado.getFechaRegistro());
+        if (carroModificado.getMarca() != null) {
+            entity.setMarca(carroModificado.getMarca());
+        }
+
+        if (carroModificado.getModelo() != null) {
+            entity.setModelo(carroModificado.getModelo());
+        }
+
+        if (carroModificado.getPlaca() != null) {
+            entity.setPlaca(carroModificado.getPlaca());
+        }
+
+        if (carroModificado.getAnio() != null) {
+            entity.setAnio(carroModificado.getAnio());
+        }
+
+        if (carroModificado.getFechaRegistro() != null) {
+            entity.setFechaRegistro(carroModificado.getFechaRegistro());
+        }
 
         return entity;
     }
