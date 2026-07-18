@@ -1,6 +1,7 @@
 package ec.com.uce.pa.application.interceptor;
 import java.time.LocalDateTime;
 
+import ec.com.uce.pa.application.service.AuditoriaService;
 import ec.com.uce.pa.domain.model.Auditoria;
 import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;
@@ -32,7 +33,7 @@ public class AuditoriaInterceptor {
         Long tiempoFinal = tiempoFin - tiempoInicio;
         a1.setTiempoEjecucion(tiempoFinal);
 
-        as.crear(a1);
+   //     as.crear(a1);
         System.out.println("Tiempo: " +tiempoFinal+" ms");
         System.out.println("Fin auditoria");
         return context;

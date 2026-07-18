@@ -5,11 +5,15 @@ import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 @Transactional
-public class AuditoriaService {
+public class MailService {
 
-    public void guardar(String auditoria) {
+    public void enviarMail(String destino, String asunto, String cuerpo) {
         System.out.println("Hilo: " + Thread.currentThread().threadId());
 
-        System.out.println("Se registra la Auditoria");
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
+        System.out.println("Se envia un mail a:" + destino);
     }
 }
