@@ -11,7 +11,7 @@ public class MailService {
         System.out.println("Hilo: " + Thread.currentThread().threadId());
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(200);
         } catch (Exception e) {
         }
         System.out.println("Se envia un mail a:" + destino);

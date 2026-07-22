@@ -17,7 +17,7 @@ public class RecursoTransferencia {
     public String realizarTransferencia(TransferenciaResource transferencia) {
         System.out.println("Hilo: " + Thread.currentThread().threadId());
 
-        return this.ts.transferenciaReactica(transferencia.getCuentaOrigen(), transferencia.getCuentaDestino(),
+        return this.ts.realizarTransferencia(transferencia.getCuentaOrigen(), transferencia.getCuentaDestino(),
                 transferencia.getMonto());
     }
 }
